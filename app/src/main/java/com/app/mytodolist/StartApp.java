@@ -12,12 +12,13 @@ public class StartApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_app);
+        getSupportActionBar().hide();
 
-        Intent taskView = new Intent(this, TaskView.class);
+        Intent recycler = new Intent(this, RecycleView.class);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(taskView);
+                startActivity(recycler);
 
             }
         }, 2000);

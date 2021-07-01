@@ -14,8 +14,10 @@
 
         <CheckBox
             android:id="@+id/taskViewCheckBox"
+            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text='this is a sample task'
             android:paddingStart="8dp"
             android:buttonTint="#30C805">
         </CheckBox>

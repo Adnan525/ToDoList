@@ -7,6 +7,8 @@ import android.widget.CheckBox;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.mytodolist.model.ModelTask;
+
 import java.util.List;
 
 public class AdapterTask extends RecyclerView.Adapter<AdapterTask.ViewHolder>{
@@ -35,7 +37,7 @@ public class AdapterTask extends RecyclerView.Adapter<AdapterTask.ViewHolder>{
 
         ModelTask td = toDoList.get(position);
         holder.checkBox.setText(td.getTaskDescription());
-        holder.checkBox.setChecked(td.getStatus());
+        holder.checkBox.setChecked(td.getStatus()==0);
 
     }
 

@@ -102,7 +102,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         db.endTransaction();
         cur.close();
-        this.close();
 
         return taskList;
     }
@@ -111,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     {
         ContentValues cv = new ContentValues();
         cv.put(description, desc);
-        cv.put(status, 1);
+        cv.put(status, 0); //complete
         cv.put(finishDate, new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
         db.update(tableName, cv, description+ "=?", new String[]{desc});
     }

@@ -19,6 +19,7 @@ public class StartApp extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(recycler);
+                finish();
 
             }
         }, 2000);

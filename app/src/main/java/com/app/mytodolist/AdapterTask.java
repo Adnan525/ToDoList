@@ -1,5 +1,6 @@
 package com.app.mytodolist;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,16 @@ public class AdapterTask extends RecyclerView.Adapter<AdapterTask.ViewHolder>{
 
     private List<ModelTask> toDoList;
     private RecycleView recycleView;
+    private DatabaseHandler db;
+    private RecycleView activity;
 
     public AdapterTask(List<ModelTask> paraList)
     {
         this.toDoList = paraList;
+    }
+    public AdapterTask(DatabaseHandler db, RecycleView activity) {
+        this.db = db;
+        this.activity = activity;
     }
 
 
@@ -41,6 +48,8 @@ public class AdapterTask extends RecyclerView.Adapter<AdapterTask.ViewHolder>{
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return this.toDoList.size();
@@ -51,6 +60,27 @@ public class AdapterTask extends RecyclerView.Adapter<AdapterTask.ViewHolder>{
 //        this.toDoList = temp;
 //        notifyDataSetChanged();
 //    }
+
+    public Context getContext() {
+        return activity;
+    }
+
+    public void setTasks(List<ModelTask> todoList) {
+        RecycleView.adapter.toDoList = todoList;
+        RecycleView.adapter.notifyItemInserted(todoList.size()-1);
+    }
+
+    public void changeStatus(int position)
+    {
+        db.openDb();
+
+        ModelTask item = toDoList.get(position);
+
+        db.updateTask(item.getTaskDescription());
+        RecycleView.adapter.setTasks(db.getAllTasks());
+        RecycleView.adapter.notifyDataSetChanged();
+
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
